@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Calculator</title>
+	<style type="text/css">
+		body{
+	margin: 0;
+	padding: 0;
+	background-color: black;
+}
+.inpbox{
+	padding: 10%;
+}
+.box{
+	width: 100%;
+	position: absolute;
+	bottom: 10%;
+
+}
+.container{ 
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	padding: 0 3% 0 3%;
+}
+#input{
+	text-align: right;
+	color: white;
+	font-size: 3rem;
+}
+.bg-orange{
+	background-color: orange;
+}
+button{
+	width: 100%;
+	padding-top: 10%;
+	padding-bottom: 10%;
+	border: none;
+	border-radius: 50%;
+	margin:2%;
+	color: white;
+	background-color: rgb(30,30,30);
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+	</style>
+</head>
+<body>
+<div>
+ <div class="inpbox"> 
+  <h1 id="input">|</h1>
+ </div>
+<div class="box">
+ <div class="container">
+ 	<button class="btn">7</button>
+ 	<button class="btn">8</button>
+ 	<button class="btn">9</button>
+ 	<button class="bg-orange btn">/</button>
+ </div>
+ <div class="container">
+ 	<button class="btn">4</button>
+ 	<button class="btn">5</button>
+ 	<button class="btn">6</button>
+ 	<button class="bg-orange btn">*</button>
+ </div>
+ <div class="container">
+ 	<button class="btn">1</button>
+ 	<button class="btn">2</button>
+ 	<button class="btn">3</button>
+ 	<button class="bg-orange btn">+</button>
+ </div>
+ <div class="container">
+ 	<button class="btn">0</button>
+ 	<button class="btn">.</button>
+ 	<button id="ac">AC</button>
+ 	<button class="bg-orange" id="submit">=</button>
+ </div>
+</div>
+</div>
+
+<script type="text/javascript">
+	let str = document.getElementById('input');
+let flag = 0;
+let count = 0;
+document.getElementById('submit').addEventListener('click',(e)=>{
+	flag = 1;
+	count = count%3 + 1;
+    str.style.textAlign = 'left';
+    str.style.fontSize = '2.5rem';
+    switch(count){
+	case 1:str.innerHTML = '<i>=> I love you ;)<i>';
+	break;
+	case 2:str.innerHTML = '<i>=> I fell for you ;)<i>';
+	break;
+	case 3:str.innerHTML = '<i>=> again n again<i>';
+	break;
+    }
+});
+
+document.getElementById('ac').addEventListener('click',(e)=>{
+	flag = 0;
+    str.style.textAlign = 'right';
+    str.style.fontSize = '3rem';
+	str.innerHTML = '|';
+});
+
+document.querySelectorAll('.btn').forEach(element => {
+
+  element.addEventListener('click',(e)=>{
+  	if(flag == 0)
+  	str.textContent = str.textContent.slice(0,str.textContent.length-1)+element.textContent+"|";
+    else{
+
+    str.style.textAlign = 'right';
+    str.style.fontSize = '3rem';
+    str.textContent = element.textContent+"|";
+    flag = 0;
+}
+  })
+});
+</script>
+</body>
+</html>
